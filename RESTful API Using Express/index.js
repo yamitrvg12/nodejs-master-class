@@ -4,7 +4,10 @@ const app = express();
 const logger = require('./logger');
 const port = process.env.PORT || 3000;
 
+// Built-in middleware
 app.use(express.json()); // middleware
+app.use(express.static('public'));
+app.use(express.urlencoded({ extended: true }));
 
 app.use(logger.log);
 app.use(logger.aut);
