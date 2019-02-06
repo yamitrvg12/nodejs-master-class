@@ -1,5 +1,6 @@
 const Joi = require('joi');
 const express = require('express');
+const morgan = require('morgan');
 const app = express();
 const logger = require('./logger');
 const port = process.env.PORT || 3000;
@@ -9,6 +10,10 @@ app.use(express.json()); // middleware
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 
+// Third Party middleware
+app.use(morgan('tiny'));
+
+// Custom middleware
 app.use(logger.log);
 app.use(logger.aut);
 
