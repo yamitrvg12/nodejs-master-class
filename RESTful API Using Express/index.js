@@ -1,6 +1,7 @@
 const Joi = require('joi');
 const express = require('express');
 const morgan = require('morgan');
+const config = require('config');
 const app = express();
 const logger = require('./logger');
 const port = process.env.PORT || 3000;
@@ -22,6 +23,15 @@ if (app.get('env') === 'development') {
 // Custom middleware
 app.use(logger.log);
 app.use(logger.aut);
+
+if (config.has('mail')) {
+    console.log('Application Name::: ', config.get('name'));
+    console.log('Mail Server::: ', config.get('mail.host'));
+    
+    if (config.has('mail.password')) {
+        console.log('Password::: ', config.get('mail.password'));
+    }
+}
 
 const courses = [
     { id: 1, name: 'course 1'},
