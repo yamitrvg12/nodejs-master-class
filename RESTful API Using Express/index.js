@@ -1,9 +1,13 @@
 const Joi = require('joi');
 const express = require('express');
 const app = express();
+const logger = require('./logger');
 const port = process.env.PORT || 3000;
 
 app.use(express.json()); // middleware
+
+app.use(logger.log);
+app.use(logger.aut);
 
 const courses = [
     { id: 1, name: 'course 1'},
