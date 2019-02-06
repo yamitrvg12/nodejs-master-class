@@ -5,13 +5,19 @@ const app = express();
 const logger = require('./logger');
 const port = process.env.PORT || 3000;
 
+// console.log(`NODE ENV:: ${process.env.NODE_ENV}`);
+// console.log(`app:: ${app.get('env')}`);
+
 // Built-in middleware
 app.use(express.json()); // middleware
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 
 // Third Party middleware
-app.use(morgan('tiny'));
+if (app.get('env') === 'development') {
+    app.use(morgan('tiny'));
+    console.log('Morgin enabled...');
+}
 
 // Custom middleware
 app.use(logger.log);
@@ -109,4 +115,10 @@ function validateCourse(course) {
     return Joi.validate(course, schema);
 }
 
-app.listen(port, () => console.log(`Listening on port ${port}...`));
+app
+    .listen(port, () => console.log(`Listening on port ${port}...`))
+    .on('error', function(error) {
+        console.log(error);
+        // List the services running in the console: lsof -iTCP -sTCP:LISTEN -P
+        // Kill services running: sudo killall -9 node
+    });
