@@ -7,6 +7,10 @@ const app = express();
 const logger = require('./logger');
 const port = process.env.PORT || 3000;
 
+// Return view engine (html markup to the client)
+app.set('view engine', 'pug');
+app.set('views', './views');
+
 // console.log(`NODE ENV:: ${process.env.NODE_ENV}`);
 // console.log(`app:: ${app.get('env')}`);
 
@@ -41,7 +45,10 @@ const courses = [
 ];
 
 app.get('/', (req, res) => {
-    res.send('Hello world');
+    res.render('index', {
+        title: 'Yamit Villamil',
+        message: 'This is a simple example of loading a markup'
+    }); // arguments: name of the view (index.pug), object that include all the values of the index.pug
 });
 
 app.get('/api/courses', (req, res) => {
