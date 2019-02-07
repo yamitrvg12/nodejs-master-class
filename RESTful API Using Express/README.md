@@ -22,3 +22,8 @@ Just run:
 ## Setting up EditorConfig
 
 - [documentation](https://codeburst.io/setting-up-eslint-and-editorconfig-in-react-native-projects-31b4d9ddd0f6)
+
+## Npm init project
+
+- npm start
+- npm lint

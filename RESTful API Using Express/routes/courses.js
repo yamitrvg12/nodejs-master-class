@@ -69,7 +69,7 @@ router.put('/:id', (req, res) => {
 	}
 
 	// Update course
-	course.map(cr => cr.name = req.body.name);
+	course[0].name = req.body.name;
 
 	// Return the update course
 	res.send(course);
