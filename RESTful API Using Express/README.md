@@ -1,3 +1,6 @@
+## Setting up npm
+- In the terminal run: `npm install` and `sudo npm install -g nodemon`
+
 ## Setting up ESLint
 
 Just run:
