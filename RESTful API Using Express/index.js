@@ -1,4 +1,5 @@
 const Joi = require('joi');
+const debug = require('debug')('app:startup');
 const express = require('express');
 const morgan = require('morgan');
 const config = require('config');
@@ -17,7 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 // Third Party middleware
 if (app.get('env') === 'development') {
     app.use(morgan('tiny'));
-    console.log('Morgin enabled...');
+    debug('Morgan is enabled...'); // console.log('Morgin enabled...');
 }
 
 // Custom middleware
@@ -25,11 +26,11 @@ app.use(logger.log);
 app.use(logger.aut);
 
 if (config.has('mail')) {
-    console.log('Application Name::: ', config.get('name'));
-    console.log('Mail Server::: ', config.get('mail.host'));
+    debug(`Application Name:: ${config.get('name')}`);
+    debug(`Mail Server:: ${config.get('mail.host')}`);
     
     if (config.has('mail.password')) {
-        console.log('Password::: ', config.get('mail.password'));
+        debug(`Password:: ${config.get('mail.password')}`);
     }
 }
 
@@ -128,7 +129,7 @@ function validateCourse(course) {
 app
     .listen(port, () => console.log(`Listening on port ${port}...`))
     .on('error', function(error) {
-        console.log(error);
+        debug(error);
         // List the services running in the console: lsof -iTCP -sTCP:LISTEN -P
         // Kill services running: sudo killall -9 node
     });
