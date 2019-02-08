@@ -14,7 +14,7 @@ function getRepositories(userName, callback) {
 
 function getCommits(repo, callback) {
 	setTimeout(() => {
-		console.log(`Calling github API to get a single commit:...`);
+		console.log('Calling github API to get a single commit:...');
 		callback({
 			url: 'https://api.github.com/repos/octocat/Hello-World/git/commits/6dcb09',
 			author: {
@@ -31,25 +31,28 @@ function getCommits(repo, callback) {
 	}, 2000);
 }
 
+// Named functions to avoid Callback Hell
+// We passing a reference of the function, we don't calling
+
+function displayCommits(commit) {
+	console.log(`Commit message: ${commit.message}`);
+}
+
+function displayRepositories(repos) {
+	console.log(`Repositories: ${repos}`);
+	getCommits(repos[0], displayCommits);
+}
+
+function displayUser(user) {
+	console.log(`User: ${user.gitHubUsername}`);
+	getRepositories(user.gitHubUsername, displayRepositories);
+}
+
+
 console.log('before');
 
 // CALLBACK HELL
 // Deeply nested structure
-getUser(1, (user) => {
-	// Get the userName
-	console.log(`User: ${user.gitHubUsername}`);
-
-	// Get the respositories
-	getRepositories(user.gitHubUsername, (repos) => { // CALLBACK HELL
-		// Get list of repositories
-		console.log(`Repositories: ${repos}`);
-
-		// Get a single commit
-		getCommits(repos[0], (commit) => { // CALLBACK HELL
-			// Get commit message from the last repo
-			console.log(`Commit message: ${commit.message}`);
-		});
-	});
-});
+getUser(1, displayUser);
 
 console.log('after');
