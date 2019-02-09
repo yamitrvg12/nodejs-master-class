@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+    "eslint.enable": true,
+    "eslint.provideLintTask": true,
+    "editor.wordWrap": "on",
+    "editor.detectIndentation": false,
+    "editor.insertSpaces": false
+	}
+}
