@@ -5,7 +5,7 @@ module.exports = {
 	},
 	"extends": "airbnb",
 	"parserOptions": {
-		"ecmaVersion": 2015
+		"ecmaVersion": 8
 	},
 	"rules": {
 		"indent": [
