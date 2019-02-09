@@ -24,9 +24,9 @@ const Course = mongoose.model('Course', courseSchema); // return a class
 async function createCourse() {
 	// create an object, instance of Course
 	const course = new Course({
-		name: 'React Course',
-		author: 'Yamit Villamil',
-		tags: ['react', 'frontend'],
+		name: 'Angular Course',
+		author: 'Rolando Villamil',
+		tags: ['angular', 'frontend'],
 		isPublished: true,
 	});
 
@@ -35,4 +35,17 @@ async function createCourse() {
 	debug(result);
 }
 
-createCourse();
+// createCourse();
+
+async function getCourses() {
+	// find() return DocumentQuery object, like a promises
+	// inside find with object we can filter
+	const courses = await Course
+		.find({ author: 'Yamit Villamil' })
+		.limit(1)
+		.sort({ tags: -1 })
+		.select({ name: 1, tags: 1 });
+	debug(courses);
+}
+
+getCourses();
