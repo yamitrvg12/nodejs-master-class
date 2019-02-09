@@ -16,3 +16,15 @@ const courseSchema = new mongoose.Schema({
 	},
 	isPublished: Boolean,
 });
+
+// Models
+// Compile that schema into a model, which gives us a class
+const Course = mongoose.model('Course', courseSchema); // return a class
+
+// create an object, instance of Course
+const course = new Course({
+	name: 'Node.js Course',
+	author: 'Yamit Villamil',
+	tags: ['node', 'backend'],
+	isPublished: true,
+});
