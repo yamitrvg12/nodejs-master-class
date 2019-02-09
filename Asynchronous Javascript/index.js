@@ -40,13 +40,6 @@ function getCommits() {
 
 console.log('before');
 
-// Consuming Promises
-// getUser(1)
-// 	.then(user => getRepositories(user.gitHubUsername))
-// 	.then(repo => getCommits(repo[0]))
-// 	.then(commit => console.log(`Commit message: ${commit.message}`))
-// 	.catch(err => console.log('Error: ', err.message));
-
 // Async and Await approach
 async function displayCommits() {
 	try {
