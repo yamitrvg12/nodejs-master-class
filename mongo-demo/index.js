@@ -21,10 +21,18 @@ const courseSchema = new mongoose.Schema({
 // Compile that schema into a model, which gives us a class
 const Course = mongoose.model('Course', courseSchema); // return a class
 
-// create an object, instance of Course
-const course = new Course({
-	name: 'Node.js Course',
-	author: 'Yamit Villamil',
-	tags: ['node', 'backend'],
-	isPublished: true,
-});
+async function createCourse() {
+	// create an object, instance of Course
+	const course = new Course({
+		name: 'React Course',
+		author: 'Yamit Villamil',
+		tags: ['react', 'frontend'],
+		isPublished: true,
+	});
+
+	// save is an Asynchronous Operation, this save() return a Promises
+	const result = await course.save();
+	debug(result);
+}
+
+createCourse();
