@@ -1,5 +1,5 @@
 function getUser(id) {
-	return new Promise((resolve, reject) => {
+	return new Promise((resolve) => {
 		setTimeout(() => {
 			console.log('Reading a user from a database...');
 			resolve({ id, gitHubUsername: 'yamitrvg12' });
@@ -8,7 +8,7 @@ function getUser(id) {
 }
 
 function getRepositories(userName) {
-	return new Promise((resolve, reject) => {
+	return new Promise((resolve) => {
 		setTimeout(() => {
 			console.log(`Calling github API from: ${userName}...`);
 			resolve(['repo 1', 'repo 2', 'repo 3', 'repo 4']);
@@ -16,8 +16,8 @@ function getRepositories(userName) {
 	});
 }
 
-function getCommits(repo) {
-	return new Promise((resolve, reject) => {
+function getCommits() {
+	return new Promise((resolve) => {
 		setTimeout(() => {
 			console.log('Calling github API to get a single commit:...');
 			resolve({
@@ -44,6 +44,6 @@ getUser(1)
 	.then(user => getRepositories(user.gitHubUsername))
 	.then(repo => getCommits(repo[0]))
 	.then(commit => console.log(`Commit message: ${commit.message}`))
-	.catch(err => console.log('Error: '. err.message));
+	.catch(err => console.log('Error: ', err.message));
 
 console.log('after');

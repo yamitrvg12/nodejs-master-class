@@ -18,6 +18,4 @@ promise
 	.then(result => console.log('Result: ', result))
 	.catch(err => console.log('Error: ', err.message));
 
-
-
 console.log('after');
