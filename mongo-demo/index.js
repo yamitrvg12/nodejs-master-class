@@ -52,9 +52,15 @@ async function getCourses() {
 		$nin: not in
 	*/
 
+	// Logical operators (methods)
+	/*
+		.or()
+		.and()
+	*/
+
 	const courses = await Course
-		.find({ price: { $lt: 20 } })
-		.select({ name: 1, price: 1 });
+		.find()
+		.and([{ tags: 'node' }, { author: 'Yamit Villamil' }]);
 
 	debug(courses);
 }
