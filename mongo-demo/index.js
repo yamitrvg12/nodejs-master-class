@@ -59,7 +59,8 @@ async function getCourses() {
 	*/
 
 	const courses = await Course
-		.find({ author: /villamil$/i });
+		.find({ author: /villamil$/i })
+		.count();
 
 	debug(courses);
 }
