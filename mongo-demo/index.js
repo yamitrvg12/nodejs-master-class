@@ -14,6 +14,7 @@ const courseSchema = new mongoose.Schema({
 		type: Date,
 		default: Date.now,
 	},
+	price: Number,
 	isPublished: Boolean,
 });
 
@@ -24,10 +25,11 @@ const Course = mongoose.model('Course', courseSchema); // return a class
 async function createCourse() {
 	// create an object, instance of Course
 	const course = new Course({
-		name: 'Angular Course',
-		author: 'Rolando Villamil',
-		tags: ['angular', 'frontend'],
-		isPublished: true,
+		name: 'Vue',
+		author: 'Voz Pablo',
+		tags: ['frontend'],
+		price: 19,
+		isPublished: false,
 	});
 
 	// save is an Asynchronous Operation, this save() return a Promises
@@ -38,13 +40,22 @@ async function createCourse() {
 // createCourse();
 
 async function getCourses() {
-	// find() return DocumentQuery object, like a promises
-	// inside find with object we can filter
+	// Query operators
+	/*
+		$eq: equal
+		$ne: not equal
+		$gt: greater than
+		$gte: greater than or equal
+		$lt: less than
+		$lte: less than or equal to
+		$in: Array to validate exact values
+		$nin: not in
+	*/
+
 	const courses = await Course
-		.find({ author: 'Yamit Villamil' })
-		.limit(1)
-		.sort({ tags: -1 })
-		.select({ name: 1, tags: 1 });
+		.find({ price: { $lt: 20 } })
+		.select({ name: 1, price: 1 });
+
 	debug(courses);
 }
 
