@@ -59,8 +59,7 @@ async function getCourses() {
 	*/
 
 	const courses = await Course
-		.find()
-		.and([{ tags: 'node' }, { author: 'Yamit Villamil' }]);
+		.find({ author: /villamil$/i });
 
 	debug(courses);
 }
